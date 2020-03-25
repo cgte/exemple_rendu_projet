@@ -11,10 +11,10 @@ class TestLancement(unittest.TestCase):
     def test_gagne_perdu_simple(self):
         solution = 3
         restants = 1
-        user_input = devine.fake_input([solution]).__next__
+        user_input = devine.fake_input([solution])
         self.assertEqual(devine.devine(restants, solution, user_input), "gagne")
 
-        user_input = devine.fake_input([solution + 1]).__next__
+        user_input = devine.fake_input([solution + 1])
         self.assertEqual(devine.devine(restants, solution, user_input), "perdu")
 
 

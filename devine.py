@@ -8,7 +8,7 @@ registre = {}
 
 def devine(restants, solution, get_user_input=input):
     while restants > 0:
-        if int(get_user_input()) == solution:
+        if int(get_user_input("Entrez un nombre : ")) == solution:
             return "gagne"
         restants -= 1
     return "perdu"
@@ -23,13 +23,16 @@ def renvoie1():
     return 1
 
 
-def fake_input(saisies):
-    for saisie in saisies:
-        yield saisie
+class fake_input:
+    def __init__(self, saisies):
+        self._iter = iter(saisies)
+
+    def __call__(self, *args):
+        print(args)
+        return next(self._iter)
 
 
 if __name__ == "__main__":
-    saisies = [2, 12]
-    fausse_entree = fake_input(saisies)
-    print(devine(3, 12, get_user_input=fausse_entree.__next__))
+    resultat = devine(3, 12)
+    print(resultat)
     pass
